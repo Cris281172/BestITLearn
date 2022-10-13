@@ -1,0 +1,44 @@
+@import "styles/globals";
+
+.languagesList{
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  bottom: -100vh;
+  transition: 0.5s;
+  gap: 100px;
+  margin: 20px 0 200px 0;
+  .language{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .languageName{
+      color: $black-color;
+      font-size: 24px;
+      transition: 0.3s;
+      margin: 3px 0 0 0;
+    }
+    &:hover{
+      .languageName{
+        color: $teal-color
+      }
+    }
+  }
+}
+
+.active{
+  bottom: 0;
+}
+
+@media(max-width: 600px){
+  .languagesList{
+    gap: 50px;
+  }
+}
+@media(max-width: 400px) {
+.languagesList{
+  grid-template-columns: repeat(2, 1fr);
+}
+}

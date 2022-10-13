@@ -11,7 +11,13 @@
   "dependencies": {
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-country-flag": "^3.0.2",
+    "react-dom": "18.2.0",
+    "react-type-animation": "^2.1.1",
+    "sass": "^1.55.0",
+    "sass-export": "^2.1.2",
+    "styled-components": "^5.3.6",
+    "text-type-animation-effect-react": "^1.2.9"
   },
   "devDependencies": {
     "@types/node": "18.8.5",
