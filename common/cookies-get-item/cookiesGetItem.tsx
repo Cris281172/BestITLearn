@@ -1,18 +1,16 @@
-interface cookieGetItemI{
-    name: string,
-}
-
-const cookiesGetItem = (name: cookieGetItemI) => {
+const cookiesGetItem = (name: string) => {
     const partsOfCookies = document.cookie.split(`;`);
-    const test = partsOfCookies.filter(el => {
-        return el === ' language=de'
+    const arrayWithCookieValue = partsOfCookies.filter(el => {
+        const indexOfequal = el.indexOf('=')
+        const cookieName = el.slice(0, indexOfequal)
+        return cookieName.replace(/\s/g, "") === name;
     })
-    console.log(test)
-    if(test[0] === undefined){
+
+    if(arrayWithCookieValue[0] === undefined){
         return
     }
-    const indexOfSearchValue = test[0].indexOf('=', 0);
-    return test[0].slice(indexOfSearchValue + 1)
+    const indexOfSearchValue = arrayWithCookieValue[0].indexOf('=', 0);
+    return arrayWithCookieValue[0].slice(indexOfSearchValue + 1)
 }
 
 export default cookiesGetItem;

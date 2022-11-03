@@ -1,0 +1,19 @@
+@import "styles/globals";
+
+.logo{
+  font-weight: 600;
+  color: $white-color;
+  .small{
+    font-size: 24px;
+  }
+  .medium{
+    font-size: 48px
+  }
+  .big{
+    font-size: 64px;
+  }
+  .underlinedText{
+    font-weight: 800;
+    color: $teal-color;
+  }
+}

@@ -42,6 +42,7 @@
         color: $grey-color;
         &:after{
           color: $teal-color;
+          transform: translateY(-10%);
         }
       }
       .underlinedText{

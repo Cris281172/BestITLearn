@@ -1,0 +1,165 @@
+@import "../../../styles/globals";
+
+.mainNav{
+  background-color: $black-color;
+  padding: 25px 20px;
+  box-shadow: 0 4px 42px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .linkList{
+    display: flex;
+
+    .linkWrapper{
+      margin-right: 50px;
+      padding-bottom: 2px;
+      display: flex;
+      justify-content: center;
+      &:nth-last-child(1){
+        margin-right: 0;
+      }
+      .link {
+        font-size: 20px;
+        color: $white-color;
+        position: relative;
+        overflow: hidden;
+        &:before{
+          transition: 0.4s;
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 2px;
+          background-color: $teal-color;
+          bottom: 0;
+          left: -100%;
+        }
+        &:hover{
+          &:before{
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+  .buttonsWrapper {
+    display: flex;
+    .loginButton{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $teal-color;
+      color: $white-color;
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-right: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .registerButton{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $grey-color;
+      color: $white-color;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+  .hamburger{
+    display: none;
+    position: relative;
+    user-select: none;
+    appearance: none;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+
+    .line{
+      display: block;
+      width: 30px;
+      height: 3px;
+      background-color: $white-color;
+      margin-bottom: 5px;
+      position: relative;
+      border-radius: 6px;
+      transform-origin: 0 0;
+      transition: 0.4s;
+    }
+    &:hover .line:nth-child(2){
+      transform: translateX(10px);
+      background-color: $teal-color;
+    }
+  }
+  .hamburger.isActive .line:nth-child(1){
+    transform: translate(0px, -2px) rotate(45deg);
+  }
+  .hamburger.isActive .line:nth-child(2){
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  .hamburger.isActive .line:nth-child(3){
+    transform: translate(-3px, 3px) rotate(-45deg);
+  }
+  .hamburger.isActive{
+    &:hover{
+      .line{
+        background-color: $teal-color;
+      }
+    }
+  }
+  .mobileMenu.active{
+    left: 0;
+  }
+  .mobileMenu{
+    background-color: $white-color;
+    position: fixed;
+    z-index: 2;
+    top: 98px;
+    left: -100%;
+    height: 100vh;
+    width: 100%;
+    transition: 0.5s;
+    .mobileMenuWrapper{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      .linkList{
+        margin-top: 150px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        .linkWrapper{
+          margin-bottom: 15px;
+          margin-right: 0;
+          text-align: center;
+          .link{
+            color: $grey-color;
+          }
+        }
+      }
+      .buttonsWrapper{
+        display: flex;
+      }
+    }
+  }
+}
+
+@media(max-width: 1400px){
+  .mainNav{
+    .linkList{
+      display: none;
+    }
+    .buttonsWrapper{
+      display: none;
+    }
+    .hamburger.active{
+      display: block;
+    }
+  }
+}

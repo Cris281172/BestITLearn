@@ -4,17 +4,22 @@ import cookiesGetItem from "../../../common/cookies-get-item/cookiesGetItem";
 import { TypeAnimation } from 'react-type-animation';
 import styles from './Languages.module.scss'
 
-const Languages = () => {
-    const[languagesVisibility, setLanguagesVisibility] = useState(true);
+interface Props{
+    setHomepageStatus: (open: boolean) => void;
+    setLanguagesStatus: (open: boolean) => void
+}
+
+const Languages = (props: Props) => {
+    const[languagesVisibility, setLanguagesVisibility] = useState(false);
     const[subtitleStyleActive, setSubtitleStyleActive] = useState(false)
-    // useEffect(() => {
-    //     if(cookiesGetItem()){
-    //         setLanguagesVisibility(false)
-    //     }
-    //     else{
-    //         setLanguagesVisibility(true);
-    //     }
-    // })
+    useEffect(() => {
+        if(cookiesGetItem('language')){
+            setLanguagesVisibility(false);
+        }
+        else{
+            setLanguagesVisibility(true);
+        }
+    }, [])
     return(
         <>
             {languagesVisibility &&
@@ -47,7 +52,7 @@ const Languages = () => {
                     </div>
 
                     <h3 className={`${styles.subtitle} ${subtitleStyleActive ? styles.active : ''}`}>Choose your language:</h3>
-                    <LanguagesList subtitleStyleActive={subtitleStyleActive} />
+                    <LanguagesList subtitleStyleActive={subtitleStyleActive} setHomepageStatus={props.setHomepageStatus} setLanguagesStatus={props.setLanguagesStatus} />
                 </div>
             </div>
             }

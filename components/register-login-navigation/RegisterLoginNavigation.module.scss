@@ -1,0 +1,24 @@
+@import "styles/globals";
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  .link{
+    display: flex;
+    justify-content: center;
+    color: $white-color;
+    padding: 10px 0;
+    font-size: 22px;
+    border-bottom: 1px solid gray;
+    width: 50%;
+  }
+  .active{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    color: $white-color;
+    padding: 10px 0;
+    font-size: 22px;
+    border-bottom: 3px solid $teal-color;
+  }
+}
