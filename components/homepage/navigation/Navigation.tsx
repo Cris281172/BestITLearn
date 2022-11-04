@@ -24,8 +24,12 @@ const MobileMenu = (props: Props) => {
                     })}
                 </ul>
                 <div className={`${styles.buttonsWrapper} ${styles.active}`}>
-                    <button className={styles.loginButton}>Zaloguj się</button>
-                    <button className={styles.registerButton}>Zarejestruj się</button>
+                    <Link href="/login">
+                        <a className={styles.loginButton}>Zaloguj się</a>
+                    </Link>
+                    <Link href="/registration">
+                        <a className={styles.registerButton}>Zarejestruj się</a>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -59,7 +63,7 @@ const Navigation = () => {
                 <Link href="/login">
                     <a className={styles.loginButton}>Zaloguj się</a>
                 </Link>
-                <Link href="/register">
+                <Link href="/registration">
                     <a className={styles.registerButton}>Zarejestruj się</a>
                 </Link>
             </div>

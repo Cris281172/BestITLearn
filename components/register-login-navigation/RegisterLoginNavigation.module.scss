@@ -8,9 +8,12 @@
     justify-content: center;
     color: $white-color;
     padding: 10px 0;
-    font-size: 22px;
+    font-size: 16px;
     border-bottom: 1px solid gray;
     width: 50%;
+    &:hover{
+      color: $teal-color;
+    }
   }
   .active{
     display: flex;
@@ -18,7 +21,7 @@
     width: 50%;
     color: $white-color;
     padding: 10px 0;
-    font-size: 22px;
+    font-size: 16px;
     border-bottom: 3px solid $teal-color;
   }
 }

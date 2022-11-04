@@ -1,35 +1,60 @@
-import type {NextPage} from 'next';
-import styles from './Login.module.scss'
-import Logo from '../../common/logo/Logo'
+import styles from './Registration.module.scss';
 import RegisterLoginNavigation from "../../components/register-login-navigation/RegisterLoginNavigation";
-import { MdCancel } from 'react-icons/md';
-import Link from 'next/link'
-import { AiOutlineCheckCircle } from 'react-icons/ai';
+import Logo from "../../common/logo/Logo";
+import axios from "axios"
+import { useForm } from 'react-hook-form';
 import * as yup from "yup";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import CirclesAnimationBackground from "../../common/circles-animation-background/CirclesAnimationBackground";
+import Link from "next/link";
+import {MdCancel} from "react-icons/md";
+import {AiOutlineCheckCircle} from "react-icons/ai";
+import {NextPage} from "next";
+
 const validationSchema = yup.object({
     email: yup.string().required("Adres email jest wymagany!").email("Podano nieprawidłowy adres email!"),
-    password: yup.string().required("Hasło jest wymagane!"),
-    rememberMe: yup.boolean()
+    password: yup.string().required("Hasło jest wymagane").min(8,'Hasło musi zawierać przynajmniej 8 znaków!').matches(/[0-9]+/ , 'Haslo musi zawierać conajmniej jedną liczbę!').matches(/[A-Z]+/ , 'Haslo musi zawierać conajmniej jedną duża cyfrę!'),
+    repeatPassword: yup.string().required('Powtórzone hasło jest wymagane!').oneOf([yup.ref('password')], "Hasła nie są takie same!"),
+    rulesAcceptations: yup.bool().oneOf([true], "Musisz zaakceptować regulamin"),
 });
 
 interface IRegisterForm{
     email: string,
     password: string,
-    rememberMe: boolean
+    repeatPassword: string,
+    rulesAcceptations: boolean,
 }
-const Login: NextPage = () => {
+
+const Registration: NextPage = () => {
     const { register, handleSubmit, formState: {errors}, reset } = useForm<IRegisterForm>({
         mode: 'onChange',
         resolver: yupResolver(validationSchema)
     });
+    console.log(errors);
     const submitForm = (data: IRegisterForm) => {
-        console.log('dsadas')
-    }
-        return(
-        <div className={styles.login}>
+        console.log(data);
+        console.log('data');
+        axios({
+            method: "post",
+            url: "localhost:8080/register",
+            headers: {
+                "Content-Type": "application/ld+json"
+            },
+            data: JSON.stringify({
+                "email": "test@test.pl",
+                "password": "dsadasdsads"
+            })
+        })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    };
+
+    return(
+        <div className={styles.registration}>
             <CirclesAnimationBackground />
             <div className={styles.loginWrapper}>
                 <RegisterLoginNavigation />
@@ -40,7 +65,7 @@ const Login: NextPage = () => {
                         </a>
                     </Link>
                     <Logo size={20} />
-                    <h3 className={styles.title}>Logowanie</h3>
+                    <h3 className={styles.title}>Rejestracja</h3>
                     <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
                         <div className={styles.item}>
                             <label className={styles.labelTitle}>Email <span className={styles.required}>*</span></label>
@@ -52,26 +77,28 @@ const Login: NextPage = () => {
                             <input className={styles.input} placeholder="Podaj hasło" type="password" {...register("password", {})}  />
                             <p className={styles.errorMessage}>{errors.password?.message}</p>
                         </div>
+                        <div className={styles.item}>
+                            <label className={styles.labelTitle}>Powtórz hasło <span className={styles.required}>*</span></label>
+                            <input className={styles.input} placeholder="Powtórz hasło" type="password" {...register("repeatPassword", {})}  />
+                            <p className={styles.errorMessage}>{errors.repeatPassword?.message}</p>
+                        </div>
                         <div className={styles.lastItem}>
-                            <div className={styles.rememberMe}>
+                            <div className={styles.acceptRules}>
                                 <label className={styles.label}>
-                                    <input className={styles.label__checkbox} type="checkbox" {...register("rememberMe", {})}/>
+                                    <input className={styles.label__checkbox} type="checkbox" {...register("rulesAcceptations", {})} />
                                     <span className={styles.label__text}>
                                   <span className={styles.label__check}>
                                     <AiOutlineCheckCircle className={styles.icon} />
                                   </span>
                                 </span>
                                 </label>
-                                <label className={styles.labelTitle}>Zapamiętaj mnie</label>
+                                <label className={styles.labelTitle}>Oświadczam, że znam i akceptuję powiadomienia Regulaminu BestITLearn.pl</label>
                             </div>
-                            <div className={styles.forgotPassword}>
-                                <Link href="">
-                                    <a className={styles.title}>Zapomniałeś hasła?</a>
-                                </Link>
-                            </div>
+                            <p className={styles.errorMessage}>{errors.rulesAcceptations?.message}</p>
+
                         </div>
                         <div className={styles.submitWrapper}>
-                            <button className={styles.submitButton}>Zaloguj się</button>
+                            <button className={styles.submitButton}>Zarejestruj się się</button>
                         </div>
                     </form>
                 </div>
@@ -81,4 +108,4 @@ const Login: NextPage = () => {
     )
 }
 
-export default Login;
+export default Registration;
