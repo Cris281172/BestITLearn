@@ -13,7 +13,60 @@
     color: $grey-color
   }
   .image{
+    position: relative;
     width: 50%;
-    max-height: 640px;
+    height: 640px;
+  }
+}
+
+@media(max-width: 1800px){
+  .slide{
+    .title{
+      margin: 0 0 0 80px;
+    }
+  }
+}
+
+@media(max-width: 1400px){
+  .slide{
+    .title{
+      width: 45%;
+      align-items: flex-start;
+      margin: 70px 0 0 40px;
+    }
+    .image{
+      height: 480px;
+    }
+  }
+}
+
+@media(max-width: 900px) {
+  .slide{
+    position: relative;
+    .title{
+      color: $white-color;
+      background-color: rgba(0, 0, 0, 0.36);
+      width: 80%;
+      padding: 20px 10px;
+      border-radius: 8px;
+      margin: 0;
+      z-index: 2;
+      position: absolute;
+      top: 35px;
+      text-align: center;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .image{
+      width: 100%;
+    }
+  }
+}
+
+@media(max-width: 600px) {
+  .slide{
+    .title{
+      width: 100%;
+    }
   }
 }

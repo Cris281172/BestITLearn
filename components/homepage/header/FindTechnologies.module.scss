@@ -60,3 +60,27 @@
     }
   }
 }
+
+@media(max-width: 1000px){
+  .findTechnologies{
+    .form{
+      .inputWrapper{
+        .input{
+          min-width: 450px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 700px) {
+  .findTechnologies{
+    .form{
+      .inputWrapper{
+        .input{
+          min-width: 200px;
+        }
+      }
+    }
+  }
+}
