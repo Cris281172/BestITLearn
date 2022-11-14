@@ -10,6 +10,9 @@ import Link from "next/link";
 import {MdCancel} from "react-icons/md";
 import {AiOutlineCheckCircle} from "react-icons/ai";
 import {NextPage} from "next";
+import callToAPI from "../api/api";
+import { useRouter } from 'next/router'
+import {useState} from 'react';
 
 const validationSchema = yup.object({
     email: yup.string().required("Adres email jest wymagany!").email("Podano nieprawidłowy adres email!"),
@@ -26,32 +29,28 @@ interface IRegisterForm{
 }
 
 const Registration: NextPage = () => {
+    const [registrationStatus, setRegistrationStatus] = useState(false);
+    const Router = useRouter();
     const { register, handleSubmit, formState: {errors}, reset } = useForm<IRegisterForm>({
         mode: 'onChange',
         resolver: yupResolver(validationSchema)
     });
     console.log(errors);
-    const submitForm = (data: IRegisterForm) => {
-        console.log(data);
-        console.log('data');
-        axios({
-            method: "post",
-            url: "localhost:8080/register",
-            headers: {
-                "Content-Type": "application/ld+json"
-            },
-            data: JSON.stringify({
-                "email": "test@test.pl",
-                "password": "dsadasdsads"
-            })
+
+    const submitForm = async (data: IRegisterForm) => {
+        await callToAPI('/register', 'post', {
+            email: data.email,
+            password: data.password,
         })
-            .then(response => {
-                console.log(response)
+            .then(res => {
+                setRegistrationStatus(true);
+                Router.push({
+                        pathname: '/',
+                    },
+                    undefined, { shallow: true }
+                )
             })
-            .catch(err => {
-                console.log(err);
-            })
-    };
+    }
 
     return(
         <div className={styles.registration}>

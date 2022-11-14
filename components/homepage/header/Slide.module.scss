@@ -1,0 +1,19 @@
+@import "styles/globals";
+
+.slide {
+  display: flex;
+  justify-content: space-between;
+  .title{
+    width: 30%;
+    display: flex;
+    margin: 0 0 0 150px;
+    align-items: center;
+    font-size: 48px;
+    font-weight: 800;
+    color: $grey-color
+  }
+  .image{
+    width: 50%;
+    max-height: 640px;
+  }
+}

@@ -9,6 +9,9 @@ import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import CirclesAnimationBackground from "../../common/circles-animation-background/CirclesAnimationBackground";
+import useAuth from "../../hooks/useAuth";
+import callToAPI from "../api/api";
+import {useState} from 'react';
 const validationSchema = yup.object({
     email: yup.string().required("Adres email jest wymagany!").email("Podano nieprawidłowy adres email!"),
     password: yup.string().required("Hasło jest wymagane!"),
@@ -21,13 +24,38 @@ interface IRegisterForm{
     rememberMe: boolean
 }
 const Login: NextPage = () => {
+    const[sendLoginStatus, setSendLoginStatus] = useState(false);
     const { register, handleSubmit, formState: {errors}, reset } = useForm<IRegisterForm>({
         mode: 'onChange',
         resolver: yupResolver(validationSchema)
     });
-    const submitForm = (data: IRegisterForm) => {
-        console.log('dsadas')
+    console.log('dasdas')
+    console.log(useAuth())
+
+    const submitForm = async (data: IRegisterForm) => {
+
+        const token = await callToAPI('/login', 'post', {
+            email: data.email,
+            password: data.password,
+        })
+
+        if(token.error){
+            setSendLoginStatus(true);
+        }
+        else{
+            if(data.rememberMe){
+                const now = new Date();
+                now.setTime(now.getTime() + 1000);
+                document.cookie = `token=${token.token};expires=${now.toUTCString()};path=/`;
+            }
+            // else{
+            //     const now = new Date();
+            //     document.cookie = `token=${token.token};expires=${now.toUTCString()};path=/`;
+            // }
+        }
+
     }
+
         return(
         <div className={styles.login}>
             <CirclesAnimationBackground />

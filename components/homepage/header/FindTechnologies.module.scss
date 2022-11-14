@@ -1,0 +1,62 @@
+@import "styles/globals";
+
+.findTechnologies {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $grey-color;
+  opacity: 0.92;
+  padding: 35px 20px;
+  border-radius: 15px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  .title{
+    font-size: 18px;
+    color: $white-color;
+    margin: 0 20px 0 0;
+    span{
+      color: $teal-color;
+      font-weight: 800;
+    }
+  }
+  .form{
+    .inputWrapper{
+      position: relative;
+      .icon{
+        color: $teal-color;
+        position: absolute;
+        left: 12px;
+        font-size: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .input{
+        color: $black-color;
+        padding: 12px 0 12px 40px;
+        font-size: 20px;
+        border-radius: 10px;
+        min-width: 700px;
+        border: 2px solid $white-color;
+        &:focus{
+          outline: none;
+          border: 2px solid $teal-color;
+        }
+      }
+      .searchButton{
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: $teal-color;
+        color: $white-color;
+        padding: 8px 5px;
+        font-size: 15px;
+        cursor: pointer;
+        border-radius: 8px;
+      }
+    }
+  }
+}

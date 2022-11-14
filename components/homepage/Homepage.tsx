@@ -2,6 +2,8 @@ import Languages from "./language-select/Languages";
 import {useEffect, useState} from "react";
 import cookiesGetItem from "../../common/cookies-get-item/cookiesGetItem";
 import Navigation from "./navigation/Navigation";
+import Footer from './footer/Footer'
+import Header from './header/Slider'
 
 const Homepage = () => {
     const[languagesStatus, setLanguagesStatus] = useState(true);
@@ -21,6 +23,8 @@ const Homepage = () => {
             {homepageStatus &&
                 <>
                     <Navigation />
+                    <Header />
+                    <Footer />
                 </>
             }
             {languagesStatus &&
