@@ -39,10 +39,12 @@ const MobileMenu = (props: Props) => {
 const Navigation = () => {
     const[mobileMenuActive, setMobileMenuActive] = useState(false);
     const hamburgerHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+        document.body.style.overflow = "hidden";
         e.currentTarget.classList.toggle(`${styles.isActive}`);
         setMobileMenuActive(true);
         if(!e.currentTarget.classList[2]){
             setMobileMenuActive(false);
+            document.body.style.overflow = "visible";
         }
     }
     return(

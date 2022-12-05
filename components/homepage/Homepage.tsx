@@ -4,6 +4,7 @@ import cookiesGetItem from "../../common/cookies-get-item/cookiesGetItem";
 import Navigation from "./navigation/Navigation";
 import Footer from './footer/Footer'
 import Header from './header/Slider'
+import HowItWork from "./how-it-work/HowItWork";
 
 const Homepage = () => {
     const[languagesStatus, setLanguagesStatus] = useState(true);
@@ -21,11 +22,12 @@ const Homepage = () => {
     return(
         <>
             {homepageStatus &&
-                <>
-                    <Navigation />
-                    <Header />
-                    <Footer />
-                </>
+            <>
+                <Navigation />
+                <Header />
+                <HowItWork />
+                <Footer />
+            </>
             }
             {languagesStatus &&
             <Languages setHomepageStatus={setHomepageStatus} setLanguagesStatus={setLanguagesStatus} />

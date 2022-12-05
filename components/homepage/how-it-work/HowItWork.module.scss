@@ -1,0 +1,19 @@
+@import "../../../styles/globals";
+
+.howItWork {
+  margin: 100px 0 0 0;
+
+  .sectionTitle{
+    margin: 0 0 75px 0;
+    color: #3c3c3c;
+    font-size: 50px;
+    text-align: center;
+  }
+  .tilesWrapper {
+    padding: 0;
+    margin: 50px auto;
+    list-style: none;
+    text-align: center;
+  }
+
+}
