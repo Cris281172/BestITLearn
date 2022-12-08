@@ -1,7 +1,6 @@
 import styles from './Registration.module.scss';
 import RegisterLoginNavigation from "../../components/register-login-navigation/RegisterLoginNavigation";
 import Logo from "../../common/logo/Logo";
-import axios from "axios"
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

@@ -5,6 +5,8 @@ import Navigation from "./navigation/Navigation";
 import Footer from './footer/Footer'
 import Header from './header/Slider'
 import HowItWork from "./how-it-work/HowItWork";
+import ContactForm from "./contact-form/ContactForm";
+
 
 const Homepage = () => {
     const[languagesStatus, setLanguagesStatus] = useState(true);
@@ -26,6 +28,7 @@ const Homepage = () => {
                 <Navigation />
                 <Header />
                 <HowItWork />
+                <ContactForm />
                 <Footer />
             </>
             }
